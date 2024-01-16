@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boleta</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        .boleta {
+            border: 1px solid #ccc;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .cliente-info {
+            margin-bottom: 20px;
+        }
+
+        .productos {
+            margin-top: 20px;
+        }
+
+        .total {
+            margin-top: 20px;
+            text-align: right;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <div class="boleta">
+        <h1>Boleta Número: {{ boleta.numero }}</h1>
+
+        <!-- Enlace para volver a la Tienda -->
+        <a href="{% url 'tienda' %}">Volver a la Tienda</a>
+
+        <div class="cliente-info">
+            <p><strong>Cliente:</strong> {{ boleta.cliente }}</p>
+        </div>
+
+        <div class="productos">
+            <h2>Productos:</h2>
+            <ul>
+                {% for producto in boleta.productos.all %}
+                    <li>{{ producto.nombre }} - {{ producto.precio }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+
+        <div class="total">
+            <p><strong>Total:</strong> {{ boleta.total }}</p>
+        </div>
+    </div>
+</body>
+</html>
